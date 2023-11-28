@@ -28,7 +28,7 @@ class Activity(db.Model, SerializerMixin):
     price = db.Column(db.String)
     img = db.Column(db.String)
     description = db.Column(db.String)
-    date_activities = db.relationship('DateActivity', back_populates = 'date_plan')
+    date_activities = db.relationship('DateActivity', back_populates = 'activity')
     date_plans = association_proxy('date_activities', 'date_plan')
     serialize_rules = ('-date_activities.activity', '-date_plans.activity')
 
