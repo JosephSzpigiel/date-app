@@ -5,9 +5,24 @@ import Navbar from "./NavBar";
 import {Outlet} from 'react-router-dom';
 
 function App() {
+  const [activities, setActivities] = useState([])
+
+  useEffect(()=> {
+      fetch('http://localhost:5555/activities')
+      .then((r)=>r.json())
+      .then((activitiesObj)=> {
+          setActivities(activitiesObj)
+      });
+  }, []);
+
+  const context = {
+    activities,
+    setActivities
+  }
+
   return <Header as='h3' textAlign='center'>
   <Navbar/>
-  <Outlet/>
+  <Outlet context={context}/>
 </Header>;
 }
 
