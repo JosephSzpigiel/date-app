@@ -1,6 +1,6 @@
 import {Grid} from "semantic-ui-react";
 
-function AddActivity() {
+function AllDates() {
     return (
         <Grid>
           <Grid.Column textAlign="center">
@@ -12,4 +12,4 @@ function AddActivity() {
       );
     }
 
-export default AddActivity;
+export default AllDates;
