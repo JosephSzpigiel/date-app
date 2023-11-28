@@ -29,8 +29,31 @@ class Activities(Resource):
 
 api.add_resource(Activities, '/activities')
 
-# class ActivityById(Resourse):
-#     # def patch(self,id):
+class ActivityById(Resource):
+    def get(self,id):
+        activity = Activity.query.get(id)
+        if not activity:
+            return make_response({'erorr': 'activity not found'}, 404)
+        return make_response(activity.to_dict(), 200)
+    def patch(self,id):
+        activity = Activity.query.get(id)
+        if not activity:
+            return make_response({'erorr': 'activity not found'}, 404)
+        params = request.json
+        for attr in params:
+            setattr(activity, attr, params['attr'])
+        db.session.commit()
+        return make_response(activity.to_dict(), 200)
+    def delete(self,id):
+        activity = Activity.query.get(id)
+        if not activity:
+            return make_response({'erorr': 'activity not found'}, 404)
+        db.session.delete(activity)
+        db.session.commit()
+        return make_response('',204)
+
+api.add_resource(ActivityById, '/activities/<int:id>')
+
 
 
 
