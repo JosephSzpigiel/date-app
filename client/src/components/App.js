@@ -11,7 +11,7 @@ function App() {
       fetch('http://localhost:5555/activities')
       .then((r)=>r.json())
       .then((activitiesObj)=> {
-          setActivities(activitiesObj)
+          setActivities(activitiesObj[0])
       });
   }, []);
 
