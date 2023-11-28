@@ -7,6 +7,7 @@ import {Outlet} from 'react-router-dom';
 function App() {
   return <Header as='h3' textAlign='center'>
   <Navbar/>
+  <Outlet/>
 </Header>;
 }
 
