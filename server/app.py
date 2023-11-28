@@ -41,7 +41,7 @@ class ActivityById(Resource):
             return make_response({'erorr': 'activity not found'}, 404)
         params = request.json
         for attr in params:
-            setattr(activity, attr, params['attr'])
+            setattr(activity, attr, params[attr])
         db.session.commit()
         return make_response(activity.to_dict(), 200)
     def delete(self,id):
