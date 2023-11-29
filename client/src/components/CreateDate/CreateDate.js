@@ -52,7 +52,10 @@ function CreateDate() {
           </Segment>
         </Grid.Column>
         <Grid.Column width= {10}>
-          <ActivitiesContainer  activities={activities} setActivities={setActivities} page={page} setDateActivities= {setDateActivities} added={added} setAdded={setAdded}/>
+          <Segment  style={{overflow: 'auto', maxHeight: '70vh' }}>
+            <h3>Activities:</h3>
+            <ActivitiesContainer  activities={activities} setActivities={setActivities} page={page} setDateActivities= {setDateActivities} added={added} setAdded={setAdded}/>
+          </Segment>
         </Grid.Column>
       </Grid>
     );

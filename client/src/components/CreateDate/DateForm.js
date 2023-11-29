@@ -30,6 +30,7 @@ function DateForm(){
 
     return(
         <Segment>
+            <h3>Create a Date!</h3>
             <Form>
                 <Form.Input inline label='Person #1' name = 'name1' value={newDate.name1} onChange={handleChange}/>
                 <Form.Input inline label='Person #2' name = 'name2' value={newDate.name2} onChange={handleChange}/>
