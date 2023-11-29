@@ -9,16 +9,18 @@ function HomePage() {
     setActivities
 } = useOutletContext()
 
-    return (
-        <Grid>
-          <Grid.Column textAlign="center">
-            <div className="childtitle">
-              <h1 className="sitetitle">Welcome!</h1>
-              <ActivitiesContainer activities = {activities} />
-            </div>
-          </Grid.Column>
-        </Grid>
-      );
-    }
+  const page = 'home';
+
+  return (
+    <Grid>
+      <Grid.Column textAlign="center">
+        <div className="childtitle">
+          <h1 className="sitetitle">Welcome!</h1>
+          <ActivitiesContainer activities = {activities} setActivities = {setActivities} page = {page} />
+        </div>
+      </Grid.Column>
+    </Grid>
+  );
+}
 
 export default HomePage;
