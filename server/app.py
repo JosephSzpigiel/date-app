@@ -54,8 +54,32 @@ class ActivityById(Resource):
 
 api.add_resource(ActivityById, '/activities/<int:id>')
 
+class DatePlans(Resource):
+    def post(self):
+        params = request.json
+        new_date = DatePlan(name1 = params['name1'], 
+                                name2 = params['name2'],
+                                budget = params['budget'],
+                                date = params['date'])
+        db.session.add(new_date)
+        db.session.commit()
+        return make_response(new_date.to_dict(), 200)
 
+api.add_resource(DatePlans, '/dateplans')
 
+class DateActivities(Resource):
+    def post(self):
+        params = request.json
+        new_date_activity = DateActivity(
+            date_plan_id = params['date_plan_id'],
+            activity_id = params['activity_id'],
+            start_time = params['start_time']
+        )
+        db.session.add(new_date_activity)
+        db.session.commit()
+        return make_response(new_date_activity.to_dict(), 200)
+
+api.add_resource(DateActivities, '/dateactivities')
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
