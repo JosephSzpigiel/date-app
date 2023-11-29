@@ -2,17 +2,27 @@ import {useState} from "react";
 import { Card, Image, Button, Form } from 'semantic-ui-react'
 
 
-function ActivityCard({oneActivity, page, setActivities}){
+function ActivityCard({oneActivity, page, setActivities, setDateActivities, added, setAdded}){
     const {name,mood,price,img,description,id} = oneActivity
     const [ showDetails, setShowDetails ] = useState(false)
     const [ editState, setEditState] = useState(false)
     const [ details, setDetails] = useState(oneActivity)
+    const [ selected, setSelected] = useState(false)
+    const [ time, setTime] = useState('')
 
     const toggleDetails = ()=>{
-        setShowDetails(!showDetails)
+        setShowDetails(curr => !curr)
     }
 
-    function handleEdit(){
+    const toggleSelected = () =>{
+      setSelected(curr => !curr)
+    }
+
+    function handleSetTime(e){
+      setTime(e.target.value)
+    }
+
+    function toggleEdit(){
       setEditState(curr => !curr)
     }
 
@@ -24,7 +34,7 @@ function ActivityCard({oneActivity, page, setActivities}){
 
     function handleCancel(){
       setDetails(oneActivity)
-      handleEdit()
+      toggleEdit()
     }
 
     function handleSubmit(e){
@@ -77,13 +87,31 @@ function ActivityCard({oneActivity, page, setActivities}){
 
     const homeButtons = (
       <div>
-        <Button color='green' onClick={handleEdit}>Edit</Button>
+        <Button color='green' onClick={toggleEdit}>Edit</Button>
         <Button color='red' onClick={handleDelete}>Delete</Button>
       </div>
     )
 
-    const selectButton = (
-      <Button color='green'>Select</Button>
+    const selectButton = added.includes(id) ? <Button disabled>ADDED!</Button>:(
+      <Button color='green' onClick={toggleSelected}>Select</Button>
+    )
+
+    function handleSaveAct(e){
+      e.preventDefault()
+      const savedActivity = {'activity': oneActivity, 'activity_id': oneActivity.id,'start_time': time}
+      setDateActivities(curr => [...curr,savedActivity])
+      setAdded(curr =>  [...curr, savedActivity['activity_id']])
+      setSelected(false)
+    }
+
+    const selectForm = (
+      <div>
+      <Form onSubmit={handleSaveAct}>
+        <Form.Input type="time" label='Time' value={time} onChange={handleSetTime}/>
+        <Form.Button type='submit'>Submit</Form.Button>
+        <Form.Button onClick={toggleSelected}>Cancel</Form.Button>
+      </Form>
+      </div>
     )
 
     function handleDelete(){
@@ -97,7 +125,7 @@ function ActivityCard({oneActivity, page, setActivities}){
       return(
         <Card>
           <Image src={img} wrapped ui={false} onClick={toggleDetails}/>
-          <Card.Content>
+          <Card.Content textAlign="center">
             <Card.Header>{name}</Card.Header>
             {editState ?
               editForm :
@@ -112,7 +140,15 @@ function ActivityCard({oneActivity, page, setActivities}){
                       {description}
                   </Card.Description>
                 }
-                {page === 'home' ? homeButtons : selectButton}
+                {
+                  selected ? 
+                    selectForm
+                  :
+                  <div>
+                    {page == 'home' ? homeButtons : selectButton}
+                  </div>
+                }
+
               </div>
             }
           </Card.Content>
