@@ -7,17 +7,22 @@ import {Outlet} from 'react-router-dom';
 function App() {
   const [activities, setActivities] = useState([])
 
-  useEffect(()=> {
-      fetch('http://localhost:5555/activities')
-      .then((r)=>r.json())
-      .then((activitiesObj)=> {
-          setActivities(activitiesObj[0])
-      });
-  }, []);
+  useEffect(() => {
+    fetch('http://localhost:5555/activities')
+        .then((r) => r.json())
+        .then((activitiesObj) => {
+            setActivities(activitiesObj[0]);
+        });
+}, []);
+
+  function onNewActivity(newActivity){
+    setActivities((currentActivities)=>[...currentActivities,newActivity])
+  }
 
   const context = {
     activities,
-    setActivities
+    onNewActivity,
+    setActivities,
   }
 
   return <Header as='h3' textAlign='center'>

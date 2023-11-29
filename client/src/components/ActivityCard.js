@@ -118,7 +118,7 @@ function ActivityCard({oneActivity, page, setActivities, setDateActivities, adde
       fetch(`http://localhost:5555/activities/${id}`, {
         method: 'DELETE',
       })
-      .then(setActivities(curr => curr.filter(activity => activity.id !== id)))
+      .then( () => setActivities(curr => curr.filter(activity => activity.id !== id)))
     }
   
 
