@@ -90,7 +90,7 @@ function ActivityCard({oneActivity, page, setActivities}){
       fetch(`http://localhost:5555/activities/${id}`, {
         method: 'DELETE',
       })
-      .then(setActivities(curr => curr.filter(activity => activity.id !== id)))
+      .then( () => setActivities(curr => curr.filter(activity => activity.id !== id)))
     }
   
 
@@ -112,7 +112,7 @@ function ActivityCard({oneActivity, page, setActivities}){
                       {description}
                   </Card.Description>
                 }
-                {page == 'home' ? homeButtons : selectButton}
+                {page === 'home' ? homeButtons : selectButton}
               </div>
             }
           </Card.Content>
