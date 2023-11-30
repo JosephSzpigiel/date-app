@@ -1,27 +1,40 @@
 import {NavLink} from "react-router-dom"
 import { Menu, Segment} from 'semantic-ui-react';
+import { useState } from "react";
+
+
 
 
 function Navbar (){
+
+
     return (
         <Segment>
           <Menu secondary widths={4}>
-            <Menu.Item>
+            <Menu.Item
+              name = 'home'
+            >
               <NavLink to="/" className="Nav-Link">
                 Home
               </NavLink>
             </Menu.Item>
-            <Menu.Item>
+            <Menu.Item
+              name = 'add  act'
+            >
               <NavLink to="/addactivity" className="Nav-Link">
                 Add Activity
               </NavLink>
             </Menu.Item>
-            <Menu.Item>
+            <Menu.Item
+              name = 'create date'          
+            >
               <NavLink to="/dates/create" className="Nav-Link">
                 Create a Date
               </NavLink>
             </Menu.Item>
-            <Menu.Item>
+            <Menu.Item
+              name = 'all dates'           
+            >
               <NavLink to="/dates" className="Nav-Link">
                 All Dates
               </NavLink>

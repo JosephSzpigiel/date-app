@@ -8,16 +8,21 @@ function App() {
   const [activities, setActivities] = useState([])
   const [searchValue, setSearchValue] = useState("")
 
-  useEffect(()=> {
-      fetch('http://localhost:5555/activities')
-      .then((r)=>r.json())
-      .then((activitiesObj)=> {
-          setActivities(activitiesObj[0])
-      });
-  }, []);
+  useEffect(() => {
+    fetch('http://localhost:5555/activities')
+        .then((r) => r.json())
+        .then((activitiesObj) => {
+            setActivities(activitiesObj[0]);
+        });
+}, []);
+
+  function onNewActivity(newActivity){
+    setActivities((currentActivities)=>[...currentActivities,newActivity])
+  }
 
   const context = {
     activities,
+    onNewActivity,
     setActivities,
     searchValue,
     setSearchValue,

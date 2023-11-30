@@ -10,6 +10,7 @@ from flask_restful import Resource
 from config import app, db, api
 # Add your model imports
 from models import DatePlan, Activity, DateActivity
+import datetime
 
 # Views go here!
 
@@ -54,8 +55,36 @@ class ActivityById(Resource):
 
 api.add_resource(ActivityById, '/activities/<int:id>')
 
+class DatePlans(Resource):
+    def post(self):
+        params = request.json
+        date = params['date'].split('-')
+        dateObj = datetime.date(int(date[0]), int(date[1]), int(date[2]))
+        new_date = DatePlan(name1 = params['name1'], 
+                                name2 = params['name2'],
+                                budget = params['budget'],
+                                date = dateObj)
+        db.session.add(new_date)
+        db.session.commit()
+        return make_response(new_date.to_dict(), 200)
 
+api.add_resource(DatePlans, '/dateplans')
 
+class DateActivities(Resource):
+    def post(self):
+        params = request.json
+        start = params['start_time'].split(':')
+        timeObj = datetime.time(hour=int(start[0]), minute=int(start[1]))
+        new_date_activity = DateActivity(
+            date_plan_id = params['date_plan_id'],
+            activity_id = params['activity_id'],
+            start_time = timeObj
+        )
+        db.session.add(new_date_activity)
+        db.session.commit()
+        return make_response(new_date_activity.to_dict(), 200)
+
+api.add_resource(DateActivities, '/dateactivities')
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
