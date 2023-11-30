@@ -159,25 +159,25 @@ function ActivityCard({oneActivity, page, setActivities, setDateActivities, adde
             {editState ?
               editForm :
               <div>
-                {showDetails ? 
+                {selected ?
+                selectForm :
+                (showDetails ?
+                  <div>
                   <Card.Meta>
                     <p className='mood'>Mood: {mood}</p>
                     <p className='price'>Price: {price}</p>
                     <p></p>
-                  </Card.Meta>:
-                  <Card.Description>
-                      {description}
-                  </Card.Description>
-                }
-                {
-                  selected ? 
-                    selectForm
+                  </Card.Meta>
+                  {page == 'home' ? homeButtons : selectButton}
+                  </div>
                   :
                   <div>
-                    {page == 'home' ? homeButtons : selectButton}
-                  </div>
-                }
-
+                  <Card.Description>
+                      {description}
+                  </Card.Description> 
+                  {page == 'home' ? homeButtons : selectButton}
+                  </div>            
+                )}
               </div>
             }
           </Card.Content>
