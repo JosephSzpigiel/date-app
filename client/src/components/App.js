@@ -27,7 +27,8 @@ function App() {
         .then((activitiesObj) => {
             setActivities(activitiesObj[0]);
         });
-}, []);
+  }, []);
+  
 
   function onNewActivity(newActivity){
     setActivities((currentActivities)=>[...currentActivities,newActivity])
@@ -40,7 +41,7 @@ function App() {
     onNewActivity,
     setActivities,
     searchValue,
-    setSearchValue,
+    setSearchValue  
   }
 
   return <Header as='h3' textAlign='center'>

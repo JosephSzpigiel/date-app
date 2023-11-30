@@ -56,6 +56,8 @@ class ActivityById(Resource):
 api.add_resource(ActivityById, '/activities/<int:id>')
 
 class DatePlans(Resource):
+    def get(self):
+        return [[dateplan.to_dict() for dateplan in DatePlan.query.all()], 200]       
     def post(self):
         params = request.json
         date = params['date'].split('-')

@@ -13,6 +13,7 @@ function SearchFilter({searchValue, setSearchValue, handleFilterChange}) {
                     placeholder='Search...'
                     onSearchChange={handleSearch}
                     value={searchValue}
+                    showNoResults ={false}
                 />
             </Grid.Column>
             <Grid.Column width={8}>
