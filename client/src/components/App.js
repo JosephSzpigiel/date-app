@@ -7,6 +7,19 @@ import {Outlet} from 'react-router-dom';
 function App() {
   const [activities, setActivities] = useState([])
   const [searchValue, setSearchValue] = useState("")
+  const [filterValue, setFilterValue] = useState();
+
+  const foundActivities = activities.filter((activity)=>
+  activity.name.toLowerCase().includes(searchValue.toLowerCase()) || 
+  activity.mood.toLowerCase().includes(searchValue.toLowerCase()) || 
+  activity.price.toLowerCase().includes(searchValue.toLowerCase()))
+
+  const handleFilterChange = (e, { value }) => {
+  setFilterValue(value);
+  };
+
+  const filteredActivities = filterValue ? foundActivities.filter(activity => activity.mood === filterValue) : foundActivities;
+
 
   useEffect(() => {
     fetch('http://localhost:5555/activities')
@@ -22,6 +35,8 @@ function App() {
 
   const context = {
     activities,
+    handleFilterChange,
+    filteredActivities,
     onNewActivity,
     setActivities,
     searchValue,
