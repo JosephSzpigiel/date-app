@@ -21,6 +21,7 @@ function HomePage() {
 
   const filteredActivities = filterValue ? activities.filter(activity => activity.mood === filterValue) : activities;
 
+
   return (
     <Grid centered>
       <Grid.Column textAlign="center" width={15}>
@@ -30,6 +31,7 @@ function HomePage() {
             <FilterButton 
               handleFilterChange={handleFilterChange} 
               setActivities={setActivities}/>
+              <div style={{ marginTop: '20px' }}/>
             <ActivitiesContainer 
                 activities = {filteredActivities} 
                 setActivities = {setActivities} 
