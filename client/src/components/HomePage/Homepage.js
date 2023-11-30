@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {Grid, Segment} from "semantic-ui-react";
 import ActivitiesContainer from "../ActivitiesContainer";
+import SearchFilter from "../SearchFilter";
 import {useOutletContext} from 'react-router-dom';
 import FilterButton from "../FilterButton";
 
@@ -12,8 +13,15 @@ function HomePage() {
 
   const {
     activities,
-    setActivities
+    setActivities,
+    searchValue,
+    setSearchValue
   } = useOutletContext()
+  
+  const foundActivities = activities.filter((activity)=>
+    activity.name.toLowerCase().includes(searchValue.toLowerCase()) || 
+    activity.mood.toLowerCase().includes(searchValue.toLowerCase()) || 
+    activity.price.toLowerCase().includes(searchValue.toLowerCase()))
 
   const handleFilterChange = (e, { value }) => {
   setFilterValue(value);
@@ -27,17 +35,8 @@ function HomePage() {
       <Grid.Column textAlign="center" width={15}>
         <div className="childtitle">
           <h1 className="sitetitle">Welcome!</h1>
-          <Segment>
-            <FilterButton 
-              handleFilterChange={handleFilterChange} 
-              setActivities={setActivities}/>
-              <div style={{ marginTop: '20px' }}/>
-            <ActivitiesContainer 
-                activities = {filteredActivities} 
-                setActivities = {setActivities} 
-                page = {page} 
-                added={[]}/>
-          </Segment>
+          <SearchFilter searchValue={searchValue} setSearchValue={setSearchValue}/>
+          <ActivitiesContainer activities = {foundActivities} setActivities = {setActivities} page = {page} added={[]} />
         </div>
       </Grid.Column>
     </Grid>
