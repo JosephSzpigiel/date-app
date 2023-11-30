@@ -1,5 +1,5 @@
 import {useState} from "react";
-import { Card, Image, Button, Form } from 'semantic-ui-react'
+import { Card, Image, Button, Form, Message } from 'semantic-ui-react'
 
 
 function ActivityCard({oneActivity, page, setActivities, setDateActivities, added, setAdded}){
@@ -9,6 +9,7 @@ function ActivityCard({oneActivity, page, setActivities, setDateActivities, adde
     const [ details, setDetails] = useState(oneActivity)
     const [ selected, setSelected] = useState(false)
     const [ time, setTime] = useState('')
+    const [ delError, setDelError ] = useState(false)
 
     const toggleDetails = ()=>{
         setShowDetails(curr => !curr)
@@ -23,6 +24,7 @@ function ActivityCard({oneActivity, page, setActivities, setDateActivities, adde
     }
 
     function toggleEdit(){
+      setDelError(false)
       setEditState(curr => !curr)
     }
 
@@ -118,6 +120,7 @@ function ActivityCard({oneActivity, page, setActivities, setDateActivities, adde
       <div>
         <Button color='green' onClick={toggleEdit}>Edit</Button>
         <Button color='red' onClick={handleDelete}>Delete</Button>
+        {delError ? <Message negative>You can't delete activities that are already part of dates!</Message>: null}
       </div>
     )
 
@@ -144,10 +147,14 @@ function ActivityCard({oneActivity, page, setActivities, setDateActivities, adde
     )
 
     function handleDelete(){
-      fetch(`http://localhost:5555/activities/${id}`, {
-        method: 'DELETE',
-      })
-      .then( () => setActivities(curr => curr.filter(activity => activity.id !== id)))
+      if(oneActivity['date_activities'].length == 0){
+        fetch(`http://localhost:5555/activities/${id}`, {
+          method: 'DELETE',
+        })
+        .then( () => setActivities(curr => curr.filter(activity => activity.id !== id)))
+      }else{
+        setDelError(true)
+      }
     }
   
 

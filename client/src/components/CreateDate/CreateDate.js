@@ -6,7 +6,7 @@ import { useState } from "react";
 
 function CreateDate() {
 
-  const {activities, setActivities} = useOutletContext()
+  const {filteredActivities, setActivities, searchValue, setSearchValue, handleFilterChange, setDatePlans} = useOutletContext()
   const page = 'date'
 
   const [dateActivities, setDateActivities] = useState([])
@@ -52,9 +52,9 @@ function CreateDate() {
           </Segment>
         </Grid.Column>
         <Grid.Column width= {10}>
-          <Segment  style={{overflow: 'auto', maxHeight: '80vh' }}>
+          <Segment  style={{overflow: 'auto', maxHeight: '85vh' , minHeight: '85vh'}}>
             <h3>Activities:</h3>
-            <ActivitiesContainer  activities={activities} setActivities={setActivities} page={page} setDateActivities= {setDateActivities} added={added} setAdded={setAdded}/>
+            <ActivitiesContainer  handleFilterChange={handleFilterChange} searchValue={searchValue} setSearchValue={setSearchValue} activities={filteredActivities} setActivities={setActivities} page={page} setDateActivities= {setDateActivities} added={added} setAdded={setAdded}/>
           </Segment>
         </Grid.Column>
       </Grid>

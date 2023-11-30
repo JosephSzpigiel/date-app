@@ -7,36 +7,24 @@ import FilterButton from "../FilterButton";
 
 function HomePage() {
 
-  const [filterValue, setFilterValue] = useState();
-
   const page = 'home';
 
   const {
     activities,
     setActivities,
     searchValue,
-    setSearchValue
+    setSearchValue,
+    handleFilterChange,
+    filteredActivities
   } = useOutletContext()
   
-  const foundActivities = activities.filter((activity)=>
-    activity.name.toLowerCase().includes(searchValue.toLowerCase()) || 
-    activity.mood.toLowerCase().includes(searchValue.toLowerCase()) || 
-    activity.price.toLowerCase().includes(searchValue.toLowerCase()))
-
-  const handleFilterChange = (e, { value }) => {
-  setFilterValue(value);
-  };
-
-  const filteredActivities = filterValue ? activities.filter(activity => activity.mood === filterValue) : activities;
-
 
   return (
     <Grid centered>
       <Grid.Column textAlign="center" width={15}>
         <div className="childtitle">
           <h1 className="sitetitle">Welcome!</h1>
-          <SearchFilter searchValue={searchValue} setSearchValue={setSearchValue}/>
-          <ActivitiesContainer activities = {foundActivities} setActivities = {setActivities} page = {page} added={[]} />
+          <ActivitiesContainer handleFilterChange={handleFilterChange} searchValue={searchValue} setSearchValue={setSearchValue} activities = {filteredActivities} setActivities = {setActivities} page = {page} added={[]} />
         </div>
       </Grid.Column>
     </Grid>

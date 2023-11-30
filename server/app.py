@@ -56,6 +56,8 @@ class ActivityById(Resource):
 api.add_resource(ActivityById, '/activities/<int:id>')
 
 class DatePlans(Resource):
+    def get(self):
+        return [[dateplan.to_dict() for dateplan in DatePlan.query.all()], 200]       
     def post(self):
         params = request.json
         date = params['date'].split('-')
@@ -69,6 +71,17 @@ class DatePlans(Resource):
         return make_response(new_date.to_dict(), 200)
 
 api.add_resource(DatePlans, '/dateplans')
+
+class DateById(Resource):
+    def delete(self, id):
+        date = DatePlan.query.get(id)
+        if not date:
+                return make_response({'error': 'date not found'}, 404)
+        db.session.delete(date)
+        db.session.commit()
+        return make_response('',204)
+    
+api.add_resource(DateById, '/dateplans/<int:id>')
 
 class DateActivities(Resource):
     def post(self):
