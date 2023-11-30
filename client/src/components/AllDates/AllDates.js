@@ -25,7 +25,7 @@ function AllDates() {
   }, [datePlans]);
 
   const dComponents = sortedDatePlans.map((dateobj)=>(
-    <DateCard key = {dateobj.id} oneDate = {dateobj}/>
+    <DateCard key = {dateobj.id} oneDate = {dateobj} setDatePlans={setDatePlans}/>
   ));
     console.log(datePlans, "hi")
   return (
