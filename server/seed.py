@@ -3,6 +3,7 @@
 # Local imports
 from app import app
 from models import db, DatePlan, Activity, DateActivity
+from datetime import date, time  
 
 with app.app_context():
 
@@ -12,16 +13,16 @@ with app.app_context():
     DateActivity.query.delete()
 
     print("Creating Date Plans...")
-    dp1 = DatePlan(name1="Dan", name2="Sara", budget="$", date="2023-12-02")
-    dp2 = DatePlan(name1="Greg", name2="Lisa", budget="$$", date="2023-12-03")
-    dp3 = DatePlan(name1="Mike", name2="Mary", budget="$$$", date="2023-12-17")
-    dp4 = DatePlan(name1="Tony", name2="Josie", budget="$$$$", date="2024-01-22")
-    dp5 = DatePlan(name1="Maxine", name2="Bartholomew", budget="$$$$$", date="2024-02-14")
-    dp6 = DatePlan(name1="Leslie", name2="Ben", budget="$", date="2023-12-05")
-    dp7 = DatePlan(name1="Jim", name2="Pam", budget="$$", date="2023-12-11")
-    dp8 = DatePlan(name1="Bert", name2="Ernie", budget="$$$", date="2023-12-22")
-    dp9 = DatePlan(name1="Cory", name2="Topanga", budget="$$$$", date="2024-01-11")
-    dp10 = DatePlan(name1="Kim", name2="Kanye", budget="$$$$$", date="2024-02-14")
+    dp1 = DatePlan(name1="Dan", name2="Sara", budget="$", date=date(2023, 12, 2))
+    dp2 = DatePlan(name1="Greg", name2="Lisa", budget="$$", date=date(2023, 12, 3))
+    dp3 = DatePlan(name1="Mike", name2="Mary", budget="$$$", date=date(2023, 12, 17))
+    dp4 = DatePlan(name1="Tony", name2="Josie", budget="$$$$", date=date(2024, 1, 22))
+    dp5 = DatePlan(name1="Maxine", name2="Bartholomew", budget="$$$$$", date=date(2024, 2, 14))
+    dp6 = DatePlan(name1="Leslie", name2="Ben", budget="$", date=date(2023, 12, 5))
+    dp7 = DatePlan(name1="Jim", name2="Pam", budget="$$", date=date(2023, 12, 11))
+    dp8 = DatePlan(name1="Bert", name2="Ernie", budget="$$$", date=date(2023, 12, 22))
+    dp9 = DatePlan(name1="Cory", name2="Topanga", budget="$$$$", date=date(2024, 1, 11))
+    dp10 = DatePlan(name1="Kim", name2="Kanye", budget="$$$$$", date=date(2024, 2, 14))
     
     date_plans = [dp1, dp2, dp3, dp4, dp5, dp6, dp7, dp8, dp9, dp10]
 
@@ -66,16 +67,16 @@ with app.app_context():
     activities = [a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12]
 
     print("Creating Date Activities...")
-    da1 = DateActivity(date_plan=dp1, activity=a2, start_time="17:00")
-    da2 = DateActivity(date_plan=dp2, activity=a1, start_time="12:00")
-    da3 = DateActivity(date_plan=dp3, activity=a6, start_time="15:30")
-    da4 = DateActivity(date_plan=dp4, activity=a10, start_time="18:00")
-    da5 = DateActivity(date_plan=dp5, activity=a4, start_time="20:00")
-    da6 = DateActivity(date_plan=dp6, activity=a3, start_time="19:30")
-    da7 = DateActivity(date_plan=dp7, activity=a7, start_time="16:00")
-    da8 = DateActivity(date_plan=dp8, activity=a11, start_time="17:30")
-    da9 = DateActivity(date_plan=dp9, activity=a12, start_time="18:30")
-    da10 = DateActivity(date_plan=dp10, activity=a9, start_time="11:00")
+    da1 = DateActivity(date_plan=dp1, activity=a2, start_time=time(17, 0, 0))
+    da2 = DateActivity(date_plan=dp2, activity=a1, start_time=time(12, 0, 0))
+    da3 = DateActivity(date_plan=dp3, activity=a6, start_time=time(15, 30, 0))
+    da4 = DateActivity(date_plan=dp4, activity=a10, start_time=time(18, 0, 0))
+    da5 = DateActivity(date_plan=dp5, activity=a4, start_time=time(20, 0, 0))
+    da6 = DateActivity(date_plan=dp6, activity=a3, start_time=time(19, 30, 0))
+    da7 = DateActivity(date_plan=dp7, activity=a7, start_time=time(16, 0, 0))
+    da8 = DateActivity(date_plan=dp8, activity=a11, start_time=time(17, 30, 0))
+    da9 = DateActivity(date_plan=dp9, activity=a12, start_time=time(18, 30, 0))
+    da10 = DateActivity(date_plan=dp10, activity=a9, start_time=time(11, 0, 0))
 
     date_activities = [da1, da2, da3, da4, da5, da6, da7, da8, da9, da10]
 
