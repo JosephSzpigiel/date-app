@@ -36,7 +36,7 @@ function HomePage() {
         <div className="childtitle">
           <h1 className="sitetitle">Welcome!</h1>
           <SearchFilter searchValue={searchValue} setSearchValue={setSearchValue}/>
-          <ActivitiesContainer activities = {foundActivities} setActivities = {setActivities} page = {page} />
+          <ActivitiesContainer activities = {foundActivities} setActivities = {setActivities} page = {page} added={[]} />
         </div>
       </Grid.Column>
     </Grid>
