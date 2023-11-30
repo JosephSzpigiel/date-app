@@ -108,7 +108,7 @@ function ActivityForm(){
                 onChange={handleImage} 
                 />
 
-                <Form.Input 
+                <Form.TextArea  
                 fluid 
                 label="Description" 
                 placeholder="Description" 
