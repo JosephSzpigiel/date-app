@@ -1,15 +1,26 @@
+import React, { useState } from 'react';
 import {Grid, Segment} from "semantic-ui-react";
 import ActivitiesContainer from "../ActivitiesContainer";
 import {useOutletContext} from 'react-router-dom';
+import FilterButton from "../FilterButton";
 
 function HomePage() {
+
+  const [filterValue, setFilterValue] = useState();
+
+  const page = 'home';
 
   const {
     activities,
     setActivities
-} = useOutletContext()
+  } = useOutletContext()
 
-  const page = 'home';
+  const handleFilterChange = (e, { value }) => {
+  setFilterValue(value);
+  };
+
+  const filteredActivities = filterValue ? activities.filter(activity => activity.mood === filterValue) : activities;
+
 
   return (
     <Grid centered>
@@ -17,7 +28,15 @@ function HomePage() {
         <div className="childtitle">
           <h1 className="sitetitle">Welcome!</h1>
           <Segment>
-            <ActivitiesContainer activities = {activities} setActivities = {setActivities} page = {page} added={[]}/>
+            <FilterButton 
+              handleFilterChange={handleFilterChange} 
+              setActivities={setActivities}/>
+              <div style={{ marginTop: '20px' }}/>
+            <ActivitiesContainer 
+                activities = {filteredActivities} 
+                setActivities = {setActivities} 
+                page = {page} 
+                added={[]}/>
           </Segment>
         </div>
       </Grid.Column>
