@@ -1,6 +1,7 @@
 import { Grid, Search } from 'semantic-ui-react'
+import FilterButton from './FilterButton'
 
-function SearchFilter({searchValue, setSearchValue}) {
+function SearchFilter({searchValue, setSearchValue, handleFilterChange}) {
     function handleSearch(e) {
         setSearchValue(e.target.value)
     }
@@ -13,6 +14,9 @@ function SearchFilter({searchValue, setSearchValue}) {
                     onSearchChange={handleSearch}
                     value={searchValue}
                 />
+            </Grid.Column>
+            <Grid.Column width={8}>
+                <FilterButton handleFilterChange={handleFilterChange}/>
             </Grid.Column>
         </Grid>
     )
