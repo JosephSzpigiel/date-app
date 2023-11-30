@@ -12,7 +12,7 @@ class DatePlan(db.Model, SerializerMixin):
     name2 = db.Column(db.String)
     budget = db.Column(db.String)
     date = db.Column(db.Date)
-    date_activities = db.relationship('DateActivity', back_populates = 'date_plan')
+    date_activities = db.relationship('DateActivity', back_populates = 'date_plan', cascade = 'all, delete-orphan')
     activities = association_proxy('date_activities', 'activity')
     serialize_rules = ('-date_activities.date_plan', '-activities.date_plans')
 
@@ -28,7 +28,7 @@ class Activity(db.Model, SerializerMixin):
     price = db.Column(db.String)
     img = db.Column(db.String)
     description = db.Column(db.String)
-    date_activities = db.relationship('DateActivity', back_populates = 'activity')
+    date_activities = db.relationship('DateActivity', back_populates = 'activity', cascade = 'all, delete-orphan')
     date_plans = association_proxy('date_activities', 'date_plan')
     serialize_rules = ('-date_activities.activity', '-date_plans.activity')
 

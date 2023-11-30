@@ -8,7 +8,6 @@ function App() {
   const [activities, setActivities] = useState([])
   const [searchValue, setSearchValue] = useState("")
   const [filterValue, setFilterValue] = useState();
-  const [datePlans, setDatePlans] = useState([])
 
   const foundActivities = activities.filter((activity)=>
   activity.name.toLowerCase().includes(searchValue.toLowerCase()) || 
@@ -30,29 +29,19 @@ function App() {
         });
   }, []);
   
-  useEffect(() => {
-    fetch('http://localhost:5555/dateplans')
-        .then((r) => r.json())
-        .then((dateObj) => {
-            setDatePlans(dateObj[0]);
-        });
-  }, []);
-  
 
   function onNewActivity(newActivity){
     setActivities((currentActivities)=>[...currentActivities,newActivity])
   }
 
   const context = {
-    datePlans,
     activities,
     handleFilterChange,
     filteredActivities,
     onNewActivity,
     setActivities,
     searchValue,
-    setSearchValue,
-    datePlans
+    setSearchValue  
   }
 
   return <Header as='h3' textAlign='center'>
