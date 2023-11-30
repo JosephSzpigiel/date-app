@@ -72,6 +72,17 @@ class DatePlans(Resource):
 
 api.add_resource(DatePlans, '/dateplans')
 
+class DateById(Resource):
+    def delete(self, id):
+        date = DatePlan.query.get(id)
+        if not date:
+                return make_response({'error': 'date not found'}, 404)
+        db.session.delete(date)
+        db.session.commit()
+        return make_response('',204)
+    
+api.add_resource(DateById, '/dateplans/<int:id>')
+
 class DateActivities(Resource):
     def post(self):
         params = request.json
