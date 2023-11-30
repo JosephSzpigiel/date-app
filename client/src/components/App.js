@@ -44,6 +44,7 @@ function App() {
   }
 
   const context = {
+    datePlans,
     activities,
     handleFilterChange,
     filteredActivities,
