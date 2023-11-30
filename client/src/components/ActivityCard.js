@@ -32,6 +32,35 @@ function ActivityCard({oneActivity, page, setActivities, setDateActivities, adde
       })
     }
 
+    const handleMood = (e, {value} ) => {
+      setDetails(curr => {
+        return {...curr, "mood": value}
+      })    
+    };
+
+    const moodOptions = [
+      { key: 'a', text: 'Adventure', value: 'Adventure' },
+      { key: 'c', text: 'Creative', value: 'Creative' },
+      { key: 'co', text: 'Comfy', value: 'Comfy' },
+      { key: 'f', text: 'Fun', value: 'Fun' },
+      { key: 'r', text: 'Romantic', value: 'Romantic'},
+      { key: 'u', text: 'Unique', value: 'Unique'}
+    ]
+      
+    const handlePrice = (e, {value} ) => {
+      setDetails(curr => {
+        return {...curr, "price": value}
+      })    
+    };
+
+    const priceOptions = [
+      { key: '$', text: '$', value: '$' },
+      { key: '$$', text: '$$', value: '$$' },
+      { key: '$$$', text: '$$$', value: '$$$' },
+      { key: '$$$$', text: '$$$$', value: '$$$$' },
+      { key: '$$$$$', text: '$$$$$', value: '$$$$$' }
+    ];
+
     function handleCancel(){
       setDetails(oneActivity)
       toggleEdit()
@@ -76,8 +105,8 @@ function ActivityCard({oneActivity, page, setActivities, setDateActivities, adde
     const editForm = (
       <Form onSubmit={handleSubmit}>
         <Form.Input inline label='Name' name = 'name' value={details.name} onChange={handleChange}/>
-        <Form.Input inline label='Mood' name = 'mood' value={details.mood} onChange={handleChange}/>
-        <Form.Input inline label='Price' name = 'price' value={details.price} onChange={handleChange}/>
+        <Form.Select inline label='Mood' name = 'mood' options={moodOptions} value={details.mood} onChange={handleMood}/>
+        <Form.Select inline label='Price' name = 'price' options={priceOptions} value={details.price} onChange={handlePrice}/>
         <Form.TextArea label='Description' name= 'description' value={details.description} onChange={handleChange}/>
         <Form.Input inline label='Image Link' name= 'img' value={details.img} onChange={handleChange}/>
         <Button type='submit'>Submit</Button>

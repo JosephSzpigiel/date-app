@@ -45,14 +45,14 @@ function CreateDate() {
   return (
       <Grid centered={true}>
         <Grid.Column width={5}>
-          <DateForm/>
+          <DateForm dateActivities={dateActivities} setDateActivities={setDateActivities} setAdded={setAdded}/>
           <Segment>
             <Header as='h3'>Itinerary:</Header>
             {activityNames}
           </Segment>
         </Grid.Column>
         <Grid.Column width= {10}>
-          <Segment  style={{overflow: 'auto', maxHeight: '70vh' }}>
+          <Segment  style={{overflow: 'auto', maxHeight: '80vh' }}>
             <h3>Activities:</h3>
             <ActivitiesContainer  activities={activities} setActivities={setActivities} page={page} setDateActivities= {setDateActivities} added={added} setAdded={setAdded}/>
           </Segment>
