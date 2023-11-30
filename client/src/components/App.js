@@ -6,6 +6,7 @@ import {Outlet} from 'react-router-dom';
 
 function App() {
   const [activities, setActivities] = useState([])
+  const [searchValue, setSearchValue] = useState("")
 
   useEffect(()=> {
       fetch('http://localhost:5555/activities')
@@ -17,7 +18,9 @@ function App() {
 
   const context = {
     activities,
-    setActivities
+    setActivities,
+    searchValue,
+    setSearchValue,
   }
 
   return <Header as='h3' textAlign='center'>
