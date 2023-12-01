@@ -1,5 +1,5 @@
 import {NavLink} from "react-router-dom"
-import { Header, Menu, Segment} from 'semantic-ui-react';
+import { Header, Menu, Segment,Button} from 'semantic-ui-react';
 import { useState } from "react";
 import '../index.css';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
@@ -16,31 +16,31 @@ function Navbar (){
           <Menu secondary widths={4}>
             <Menu.Item
               name = 'home'
+              as ={NavLink}
+              to="/"
             >
-              <NavLink to="/" className="Nav-Link">
                 Home
-              </NavLink>
             </Menu.Item>
             <Menu.Item
               name = 'add  act'
+              as ={NavLink}
+              to="/addactivity"
             >
-              <NavLink to="/addactivity" className="Nav-Link">
                 Add Activity
-              </NavLink>
             </Menu.Item>
             <Menu.Item
-              name = 'create date'          
+              name = 'create date' 
+              as ={NavLink}
+              end to="/dates/create"        
             >
-              <NavLink to="/dates/create" className="Nav-Link">
                 Create a Date
-              </NavLink>
             </Menu.Item>
             <Menu.Item
-              name = 'all dates'           
+              name = 'all dates' 
+              as ={NavLink}
+              end to="/dates"  
             >
-              <NavLink to="/dates" className="Nav-Link">
                 All Dates
-              </NavLink>
             </Menu.Item>
           </Menu>
         </Segment>
