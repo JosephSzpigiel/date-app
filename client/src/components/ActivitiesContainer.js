@@ -1,7 +1,7 @@
 import ActivityCard from "./ActivityCard";
-import { Grid, Search, Segment } from "semantic-ui-react";
+import { Grid, Segment } from "semantic-ui-react";
 import SearchFilter from "./SearchFilter";
-import FilterButton from "./FilterButton";
+
 
 
 function ActivitiesContainer({setDateActivities, activities, setActivities, page, added, setAdded, searchValue, setSearchValue, handleFilterChange}){
@@ -11,7 +11,7 @@ function ActivitiesContainer({setDateActivities, activities, setActivities, page
     });
     
     return(
-        <Segment>
+        <Segment className="container">
             <SearchFilter searchValue={searchValue} setSearchValue={setSearchValue} handleFilterChange={handleFilterChange}/>
             <Grid columns= {4} className="cards">
                 {activityCards}

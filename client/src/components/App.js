@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import { Header } from "semantic-ui-react";
 import Navbar from "./NavBar";
 import {Outlet} from 'react-router-dom';
+import '../index.css';
 
 function App() {
   const [activities, setActivities] = useState([])

@@ -4,6 +4,7 @@ import ActivitiesContainer from "../ActivitiesContainer";
 import {useOutletContext} from 'react-router-dom';
 import Welcome from './Welcome';
 
+
 function HomePage() {
 
   const page = 'home';
@@ -22,14 +23,10 @@ function HomePage() {
     <Grid centered>
       <Grid.Column textAlign="center" width={15}>
         <div className="welcomeContainer">
-          <Grid.Column>
-            <Header as="h1" className="welcome">Welcome to DateCrafters - Your Personal Dating Concierge!
-            </Header>
-          </Grid.Column>
-          <Grid.Column>
+          <Grid.Column >
             At DateCrafters, we're dedicated to transforming your date nights into unforgettable experiences. No more stress, no more guesswork – just personalized, memorable moments crafted just for you. Welcome to a world where every date is a masterpiece!
           </Grid.Column>
-          <Grid.Column>
+          <Grid.Column className='welcomeWrapper'>
               <Welcome/>
           </Grid.Column>
           <Grid.Column>
