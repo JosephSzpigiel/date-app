@@ -85,6 +85,7 @@ function ActivityCard({oneActivity, page, setActivities, setDateActivities, adde
     function handleCancel(){
       setDetails(oneActivity)
       toggleEdit()
+      setUrlErr(false)
     }
 
     function handleSubmit(e){
