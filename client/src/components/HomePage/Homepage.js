@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Grid, Header } from "semantic-ui-react";
+import {Grid, GridColumn, Header } from "semantic-ui-react";
 import ActivitiesContainer from "../ActivitiesContainer";
 import {useOutletContext} from 'react-router-dom';
 import Welcome from './Welcome';
@@ -22,14 +22,20 @@ function HomePage() {
     <Grid centered>
       <Grid.Column textAlign="center" width={15}>
         <div className="welcomeContainer">
-          <Header as="h1" className="welcome">Welcome to DateCrafters: Your Personal Dating Concierge!
-            At DateCrafters, we're dedicated to transforming your date nights into unforgettable experiences. No more stress, no more guesswork – just personalized, memorable moments crafted just for you. Welcome to a world where every date is a masterpiece
-            !
-            <Welcome/>
-
-            Ready to Craft Your Perfect Date?
-            DateCrafters is more than an website – it's your personal dating concierge, ready to elevate your date nights. Start now and embark on a journey where every date is an experience crafted just for you.   
-          </Header>
+          <Grid.Column>
+            <Header as="h1" className="welcome">Welcome to DateCrafters - Your Personal Dating Concierge!
+            </Header>
+          </Grid.Column>
+          <Grid.Column>
+            At DateCrafters, we're dedicated to transforming your date nights into unforgettable experiences. No more stress, no more guesswork – just personalized, memorable moments crafted just for you. Welcome to a world where every date is a masterpiece!
+          </Grid.Column>
+          <Grid.Column>
+              <Welcome/>
+          </Grid.Column>
+          <Grid.Column>
+              Ready to Craft Your Perfect Date?
+              DateCrafters is more than an website – it's your personal dating concierge, ready to elevate your date nights. Start now and embark on a journey where every date is an experience crafted just for you.   
+          </Grid.Column>
           <ActivitiesContainer handleFilterChange={handleFilterChange} searchValue={searchValue} setSearchValue={setSearchValue} activities = {filteredActivities} setActivities = {setActivities} page = {page} added={[]} />
         </div>
       </Grid.Column>

@@ -1,5 +1,5 @@
 import {NavLink} from "react-router-dom"
-import { Menu, Segment} from 'semantic-ui-react';
+import { Header, Menu, Segment} from 'semantic-ui-react';
 import { useState } from "react";
 
 
@@ -10,6 +10,7 @@ function Navbar (){
 
     return (
         <Segment>
+          <Header as='h1'>DateCrafters</Header>
           <Menu secondary widths={4}>
             <Menu.Item
               name = 'home'

@@ -34,6 +34,12 @@ const routes = [
 const router = createBrowserRouter(routes);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+const meta = document.createElement('meta');
+meta.name = 'viewport';
+meta.content = 'width=device-width, initial-scale=1';
+document.head.appendChild(meta);
+
 root.render(<RouterProvider router={router} />);
 
 
