@@ -11,7 +11,7 @@ function ActivitiesContainer({setDateActivities, activities, setActivities, page
     });
     
     return(
-        <Segment className="container">
+        <Segment style={{ backgroundColor: "#d3d3d3" }} className="container">
             <SearchFilter searchValue={searchValue} setSearchValue={setSearchValue} handleFilterChange={handleFilterChange}/>
             <Grid columns= {4} className="cards">
                 {activityCards}

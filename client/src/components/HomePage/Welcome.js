@@ -12,7 +12,7 @@ function Welcome() {
   };
 
   return (
-    <Accordion fluid styled>
+    <Accordion style={{ backgroundColor: "#d3d3d3" }} fluid styled >
       <Accordion.Title
         active={activeIndex === 0}
         index={0}

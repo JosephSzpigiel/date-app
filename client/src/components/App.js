@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import { Header } from "semantic-ui-react";
 import Navbar from "./NavBar";
 import {Outlet} from 'react-router-dom';
+import FooterSVG from "./FooterSVG";
 import '../index.css';
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
   return <Header as='h3' textAlign='center'>
   <Navbar/>
   <Outlet context={context}/>
+  <FooterSVG/>
 </Header>;
 }
 
