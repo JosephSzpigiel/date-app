@@ -13,18 +13,20 @@ with app.app_context():
     DateActivity.query.delete()
 
     print("Creating Date Plans...")
-    dp1 = DatePlan(name1="Dan", name2="Sara", budget="$", date=date(2023, 12, 2))
-    dp2 = DatePlan(name1="Greg", name2="Lisa", budget="$$", date=date(2023, 12, 3))
-    dp3 = DatePlan(name1="Mike", name2="Mary", budget="$$$", date=date(2023, 12, 17))
-    dp4 = DatePlan(name1="Tony", name2="Josie", budget="$$$$", date=date(2024, 1, 22))
+    dp1 = DatePlan(name1="Taylor", name2="Travis", budget="$", date=date(2023, 12, 2))
+    dp2 = DatePlan(name1="Penelope", name2="Javier", budget="$$", date=date(2023, 12, 3))
+    dp3 = DatePlan(name1="LeBron", name2="Savannah", budget="$$$", date=date(2023, 12, 17))
+    dp4 = DatePlan(name1="Barack", name2="Michelle", budget="$$$$", date=date(2024, 1, 22))
     dp5 = DatePlan(name1="Maxine", name2="Bartholomew", budget="$$$$$", date=date(2024, 2, 14))
     dp6 = DatePlan(name1="Leslie", name2="Ben", budget="$", date=date(2023, 12, 5))
     dp7 = DatePlan(name1="Jim", name2="Pam", budget="$$", date=date(2023, 12, 11))
     dp8 = DatePlan(name1="Bert", name2="Ernie", budget="$$$", date=date(2023, 12, 22))
     dp9 = DatePlan(name1="Cory", name2="Topanga", budget="$$$$", date=date(2024, 1, 11))
     dp10 = DatePlan(name1="Kim", name2="Kanye", budget="$$$$$", date=date(2024, 2, 14))
+    dp11 = DatePlan(name1="Edward", name2="Bella", budget="$$$$", date=date(2024, 10, 31))
+    dp12 = DatePlan(name1="Timon", name2="Pumbaa", budget="$$$", date=date(2024, 2, 14))
     
-    date_plans = [dp1, dp2, dp3, dp4, dp5, dp6, dp7, dp8, dp9, dp10]
+    date_plans = [dp1, dp2, dp3, dp4, dp5, dp6, dp7, dp8, dp9, dp10, dp11, dp12]
 
     print("Creating Activities...")
     a1 = Activity(name="Picnic", mood="Creative", price="$$", 
@@ -77,8 +79,10 @@ with app.app_context():
     da8 = DateActivity(date_plan=dp8, activity=a11, start_time=time(17, 30, 0))
     da9 = DateActivity(date_plan=dp9, activity=a12, start_time=time(18, 30, 0))
     da10 = DateActivity(date_plan=dp10, activity=a9, start_time=time(11, 0, 0))
+    da11 = DateActivity(date_plan=dp11, activity=a5, start_time=time(14, 0, 0))
+    da12 = DateActivity(date_plan=dp12, activity=a8, start_time=time(19, 0, 0))
 
-    date_activities = [da1, da2, da3, da4, da5, da6, da7, da8, da9, da10]
+    date_activities = [da1, da2, da3, da4, da5, da6, da7, da8, da9, da10, da11, da12]
 
     db.session.add_all(date_plans)
     db.session.add_all(activities)
