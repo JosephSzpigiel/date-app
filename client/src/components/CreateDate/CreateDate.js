@@ -47,7 +47,7 @@ function CreateDate() {
         <Grid.Column width={5}>
           <DateForm dateActivities={dateActivities} setDateActivities={setDateActivities} setAdded={setAdded}/>
           <Segment>
-            <Header as='h3'>Itinerary:</Header>
+            <Header  as='h3'>Itinerary:</Header>
             {activityNames}
           </Segment>
         </Grid.Column>

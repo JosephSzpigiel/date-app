@@ -1,13 +1,13 @@
-import 'semantic-ui-css/semantic.min.css'
 import React from "react";
-import ReactDOM from 'react-dom/client';
-import App from "./components/App";
-import HomePage from './components/HomePage/Homepage';
-import AddActivity from './components/AddActivity/AddActivity';
-import AllDates from './components/AllDates/AllDates';
-import CreateDate from './components/CreateDate/CreateDate';
+import ReactDOM from "react-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import "semantic-ui-css/semantic.min.css";
 import "./index.css";
-import {createBrowserRouter, RouterProvider} from 'react-router-dom';
+import App from "./components/App";
+import HomePage from "./components/HomePage/Homepage";
+import AddActivity from "./components/AddActivity/AddActivity";
+import AllDates from "./components/AllDates/AllDates";
+import CreateDate from "./components/CreateDate/CreateDate";
 
 const routes = [
   {
@@ -34,6 +34,7 @@ const routes = [
 const router = createBrowserRouter(routes);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 
 const meta = document.createElement('meta');
 meta.name = 'viewport';

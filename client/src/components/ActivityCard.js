@@ -183,7 +183,7 @@ function ActivityCard({oneActivity, page, setActivities, setDateActivities, adde
 
       return(
         <Card>
-          <Image src={img} wrapped ui={false} onClick={toggleDetails}/>
+          <Image src={img} size="medium" wrapped ui={false} onClick={toggleDetails}/>
           <Card.Content textAlign="center">
             <Card.Header>{name}</Card.Header>
             {editState ?
