@@ -1,6 +1,7 @@
 import {useState} from "react";
-import { Header, Grid, Form } from "semantic-ui-react";
+import { Header, Grid, Form, Message } from "semantic-ui-react";
 import {useOutletContext} from 'react-router-dom'
+import { C } from "keyboard-key";
 
 function ActivityForm(){
     const {onNewActivity} = useOutletContext()
@@ -9,13 +10,26 @@ function ActivityForm(){
     const [ newPrice , setnewPrice ] = useState('')
     const [ newDescription, setNewDescription ] = useState('')
     const [ newImage , setNewImage ] = useState('')
+    const [ urlErr, setUrlErr] = useState(false)
 
     const handleName = (e) => {
       setNewName(e.target.value);
     };
+
+    function validateUrl(url){
+      try{
+        const test = new URL(url)
+        setUrlErr(false)
+        return url
+      }catch{
+        setUrlErr(true)
+        return url
+      }
+    }
     
     const handleImage = (e) => {
-      setNewImage(e.target.value);
+      setNewImage(validateUrl(e.target.value))
+      ;
     };
     
     const handleDescription = (e) => {
@@ -49,7 +63,8 @@ function ActivityForm(){
 
     function handleSubmit(e) {
       e.preventDefault();
-      const newActivitySubmitted = {
+      if(!urlErr){
+        const newActivitySubmitted = {
         name : newName,
             mood : newMood,
             price : newPrice,
@@ -78,6 +93,8 @@ function ActivityForm(){
           setNewDescription('')
           setnewMood('')
         }) 
+      }
+      
     }
   
     return(
@@ -91,7 +108,7 @@ function ActivityForm(){
 
               <Form.Field>
                 <Form.Input 
-                fluid 
+                required={true} 
                 label="Name" 
                 placeholder="Name" 
                 name="Name" 
@@ -100,16 +117,17 @@ function ActivityForm(){
                 />
 
                 <Form.Input 
-                fluid 
+                required={true} 
                 label="Image" 
                 placeholder="Image URL" 
                 name="Image" 
                 value={newImage} 
                 onChange={handleImage} 
                 />
+                {urlErr ? <Message negative>Must be a valid URL</Message>:null}
 
                 <Form.TextArea  
-                fluid 
+                required={true} 
                 label="Description" 
                 placeholder="Description" 
                 name="Description" 
@@ -121,7 +139,7 @@ function ActivityForm(){
 
               <Form.Group>
                 <Form.Select 
-                fluid 
+                required={true} 
                 label="Mood" 
                 placeholder="Mood Options" 
                 name="Mood" 
@@ -133,7 +151,7 @@ function ActivityForm(){
 
               <Form.Group>
                 <Form.Select 
-                fluid 
+                required={true} 
                 label="Budget" 
                 placeholder="Budget Options" 
                 name="Budget" 

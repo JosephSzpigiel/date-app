@@ -10,9 +10,22 @@ function ActivityCard({oneActivity, page, setActivities, setDateActivities, adde
     const [ selected, setSelected] = useState(false)
     const [ time, setTime] = useState('')
     const [ delError, setDelError ] = useState(false)
+    const [ urlErr, setUrlErr] = useState(false)
+
 
     const toggleDetails = ()=>{
         setShowDetails(curr => !curr)
+    }
+
+    function validateUrl(url){
+      try{
+        const test = new URL(url)
+        setUrlErr(false)
+        return url
+      }catch{
+        setUrlErr(true)
+        return url
+      }
     }
 
     const toggleSelected = () =>{
@@ -37,6 +50,12 @@ function ActivityCard({oneActivity, page, setActivities, setDateActivities, adde
     const handleMood = (e, {value} ) => {
       setDetails(curr => {
         return {...curr, "mood": value}
+      })    
+    };
+
+    const handleUrl = (e, {value} ) => {
+      setDetails(curr => {
+        return {...curr, "img": validateUrl(value)}
       })    
     };
 
@@ -70,47 +89,50 @@ function ActivityCard({oneActivity, page, setActivities, setDateActivities, adde
 
     function handleSubmit(e){
       e.preventDefault()
-      fetch(`http://localhost:5555/activities/${id}`, {
-        method: 'PATCH',
-        headers: {'Content-type': 'application/json'},
-        body: JSON.stringify(
-            {
-                "name" : details.name, 
-                "mood" : details.mood,
-                "price" : details.price,
-                "img" : details.img,
-                "description" : details.description
-            }
-        ) 
-      })
-      .then(r => r.json())
-      .then(activity => {
-          setActivities(activities => {
-              return (activities.map((arrayActivity) => {
-                  if (arrayActivity.id === activity.id) {
-                      return{ ...arrayActivity, 
-                        'name' : activity.name, 
-                        'mood' : activity.mood,
-                        'price' : activity.price,
-                        'img' : activity.img,
-                        'description' : activity.description}
-                  } else {
-                      return arrayActivity
-                  }
-              }))
-          })
-          setShowDetails(false)
-          setEditState(false)
-      }) 
+      if(!urlErr){
+        fetch(`http://localhost:5555/activities/${id}`, {
+          method: 'PATCH',
+          headers: {'Content-type': 'application/json'},
+          body: JSON.stringify(
+              {
+                  "name" : details.name, 
+                  "mood" : details.mood,
+                  "price" : details.price,
+                  "img" : details.img,
+                  "description" : details.description
+              }
+          ) 
+        })
+        .then(r => r.json())
+        .then(activity => {
+            setActivities(activities => {
+                return (activities.map((arrayActivity) => {
+                    if (arrayActivity.id === activity.id) {
+                        return{ ...arrayActivity, 
+                          'name' : activity.name, 
+                          'mood' : activity.mood,
+                          'price' : activity.price,
+                          'img' : activity.img,
+                          'description' : activity.description}
+                    } else {
+                        return arrayActivity
+                    }
+                }))
+            })
+            setShowDetails(false)
+            setEditState(false)
+        }) 
+        }
     }
 
     const editForm = (
       <Form onSubmit={handleSubmit}>
-        <Form.Input inline label='Name' name = 'name' value={details.name} onChange={handleChange}/>
-        <Form.Select inline label='Mood' name = 'mood' options={moodOptions} value={details.mood} onChange={handleMood}/>
-        <Form.Select inline label='Price' name = 'price' options={priceOptions} value={details.price} onChange={handlePrice}/>
-        <Form.TextArea label='Description' name= 'description' value={details.description} onChange={handleChange}/>
-        <Form.Input inline label='Image Link' name= 'img' value={details.img} onChange={handleChange}/>
+        <Form.Input inline required={true} label='Name' name = 'name' value={details.name} onChange={handleChange}/>
+        <Form.Select inline required={true} label='Mood' name = 'mood' options={moodOptions} value={details.mood} onChange={handleMood}/>
+        <Form.Select required={true} inline label='Price' name = 'price' options={priceOptions} value={details.price} onChange={handlePrice}/>
+        <Form.TextArea required={true} label='Description' name= 'description' value={details.description} onChange={handleChange}/>
+        <Form.Input required={true} inline label='Image Link' name= 'img' value={details.img} onChange={handleUrl}/>
+        {urlErr ? <Message negative>Must be a valid URL</Message>:null}
         <Button type='submit'>Submit</Button>
         <Button onClick={handleCancel}>Cancel</Button>
       </Form>
