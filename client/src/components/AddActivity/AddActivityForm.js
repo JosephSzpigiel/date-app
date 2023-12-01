@@ -17,7 +17,7 @@ function ActivityForm(){
     // ]
 
     return(
-    <Grid centered columns={1} width={5}>
+    <Grid centered>
       <Grid.Column width={5}>
         <div>
         <Header as='h3' textAlign='center'>
